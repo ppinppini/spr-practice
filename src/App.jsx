@@ -1,23 +1,9 @@
-import TodoInput from "./components/TodoInput";
-import TodoList from "./components/TodoList";
-import useTodos from "./hooks/useTodos";
+import TodoInput from './components/TodoInput';
+import TodoList from './components/TodoList';
+import useTodos from './hooks/useTodos';
 
 export default function App() {
-  const [todos, setTodos] = useState([]);
-
-  const handleAdd = (text) => {
-    setTodos([...todos, { id: nextId++, text, done: false }]);
-  };
-
-  const handleToggle = (id) => {
-    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo)));
-  };
-
-  const handleRemove = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
-  const remainingCount = todos.filter((todo) => !todo.done).length;
+  const { todos, remainingCount, addTodo, toggleTodo, removeTodo } = useTodos();
 
   return (
     <main className="app">
