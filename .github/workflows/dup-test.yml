@@ -1,0 +1,13 @@
+name: DupTest
+
+on:
+  pull_request:
+    types: [opened, synchronize, edited]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.action != 'edited' || github.event.changes.base != null }}
+    steps:
+      - name: Fail deliberately
+        run: exit 1
