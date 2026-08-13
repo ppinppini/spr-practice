@@ -1,0 +1,13 @@
+name: SkipTest
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    name: build (24.x)
+    runs-on: ubuntu-latest
+    if: ${{ !contains(toJSON(github.event.pull_request.labels.*.name), 'ci skip') }}
+    steps:
+      - run: echo ok
